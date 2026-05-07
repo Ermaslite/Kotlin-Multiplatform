@@ -56,7 +56,9 @@ fun countries() = listOf(
 @Preview
 fun App(countries: List<Country> = countries()) {
     MaterialTheme {
+
         var showCountries by remember { mutableStateOf(false) }
+        var location by remember { mutableStateOf("Europe/Paris") }
         var timeAtLocation by remember { mutableStateOf("No location selected") }
 
         Column(
@@ -91,6 +93,10 @@ fun App(countries: List<Country> = countries()) {
             Button(modifier = Modifier.padding(start = 20.dp, top = 10.dp),
                 onClick = { showCountries = !showCountries }) {
                 Text("Select Location")
+            Text(timeAtLocation)
+            TextField(value = location, onValueChange = { location = it })
+            Button(onClick = { timeAtLocation = "13:30" }) {
+                Text("Show Time At Location")
             }
         }
     }
